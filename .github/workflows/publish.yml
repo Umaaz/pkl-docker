@@ -32,7 +32,7 @@ jobs:
           tags: |
             type=raw,value=latest
             type=semver,pattern={{version}}-${{ matrix.os }},value=${{ github.ref_name }}
-            type=semvar,pattern={{version}},value=${{ github.ref_name }},enable=${{ matrix.os == alpine }}
+            type=semvar,pattern={{version}},value=${{ github.ref_name }},enable=${{ matrix.os == 'alpine' }}
           labels: |
             maintainer=Ben Donnelly
             org.opencontainers.image.title=PKL-CLI

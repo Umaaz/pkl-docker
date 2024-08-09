@@ -9,6 +9,12 @@ jobs:
   build_and_publish:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        os:
+          - ubuntu
+          - alpine
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,10 +30,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: jesscarlos/pkl-cli
+          images: bendonnelly/pkl
           tags: |
             type=raw,value=latest
-            type=semver,pattern={{version}},value=${{ github.ref_name }}
+            type=semver,pattern={{version}}-${{ matrix.os }},value=${{ github.ref_name }}
+            type=semvar,pattern={{version}},value=${{ github.ref_name }},enable=${{ martix.os == alpine }}
           labels: |
             maintainer=Ben Donnelly
             org.opencontainers.image.title=PKL-CLI

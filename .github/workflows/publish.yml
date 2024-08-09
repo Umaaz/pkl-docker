@@ -11,9 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os:
-          - ubuntu
-          - alpine
+        os: [ ubuntu, alpine ]
 
     steps:
       - uses: actions/checkout@v4
